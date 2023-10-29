@@ -52,6 +52,7 @@ with col1:
     # Models from Self-Distilled SG https://github.com/self-distilled-stylegan/self-distilled-internet-photos
     model_options = {
         "Lions": "https://storage.googleapis.com/self-distilled-stylegan/lions_512_pytorch.pkl",
+        "Cars": "http://d36zk2xti64re0.cloudfront.net/stylegan2/networks/stylegan2-car-config-f.pkl",
         "Faces (FFHQ)": "https://nvlabs-fi-cdn.nvidia.com/stylegan2-ada-pytorch/pretrained/ffhq.pkl",
         "Elephants": "https://storage.googleapis.com/self-distilled-stylegan/elephants_512_pytorch.pkl",
         "Parrots": "https://storage.googleapis.com/self-distilled-stylegan/parrots_512_pytorch.pkl",
