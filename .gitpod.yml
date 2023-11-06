@@ -10,10 +10,7 @@ image:
 tasks:
   - before: pyenv local 3.10
     init: pip install -r requirements.txt
-    command: python --version;
-             echo "Setup Done Successfully";
-             pip freeze | grep streamlit
-#  - init: python -m venv venv; source venv/bin/activate; python -m pip install -r requirements.txt
-#    command: streamlit run app.py
+    command: echo "\nSetup Done Successfully\n";
+             streamlit run app.py
 
 
