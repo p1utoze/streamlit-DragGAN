@@ -48,7 +48,7 @@ with col2:
 with col1:
     st.header("🐉 DragGAN")
 
-    settings_col1, settings_col2 = st.columns([1,1])
+    settings_col1, settings_col2 = st.columns([1, 1])
     # Models from Self-Distilled SG https://github.com/self-distilled-stylegan/self-distilled-internet-photos
     model_options = {
         "Lions": "https://storage.googleapis.com/self-distilled-stylegan/lions_512_pytorch.pkl",
@@ -60,6 +60,12 @@ with col1:
         "Giraffes": "https://storage.googleapis.com/self-distilled-stylegan/giraffes_512_pytorch.pkl",
         "Dogs (1)": "https://storage.googleapis.com/self-distilled-stylegan/dogs_1024_pytorch.pkl",
         "Dogs (2)": "https://nvlabs-fi-cdn.nvidia.com/stylegan2-ada-pytorch/pretrained/afhqdog.pkl",
+        "Cars-A": "https://nvlabs-fi-cdn.nvidia.com/stylegan2/networks/stylegan2-car-config-a.pkl",
+        "Cars-B": "https://nvlabs-fi-cdn.nvidia.com/stylegan2/networks/stylegan2-car-config-b.pkl",
+        "Cars-C": "https://nvlabs-fi-cdn.nvidia.com/stylegan2/networks/stylegan2-car-config-c.pkl",
+        "Cars-D": "https://nvlabs-fi-cdn.nvidia.com/stylegan2/networks/stylegan2-car-config-d.pkl",
+        "Cars-E": "https://nvlabs-fi-cdn.nvidia.com/stylegan2/networks/stylegan2-car-config-e.pkl",
+        "Cars-F": "https://nvlabs-fi-cdn.nvidia.com/stylegan2/networks/stylegan2-car-config-f.pkl",
         "Cats": "https://nvlabs-fi-cdn.nvidia.com/stylegan2-ada-pytorch/pretrained/afhqcat.pkl",
         "Wildlife": "https://nvlabs-fi-cdn.nvidia.com/stylegan2-ada-pytorch/pretrained/afhqwild.pkl",
         "MetFaces": "https://nvlabs-fi-cdn.nvidia.com/stylegan2-ada-pytorch/pretrained/metfaces.pkl",
