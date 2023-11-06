@@ -13,15 +13,17 @@ import copy
 import numpy as np
 import torch
 import dnnlib
+import networks
 from torch_utils import misc
 
 #----------------------------------------------------------------------------
 
 def load_network_pkl(f, force_fp16=False):
     data = _LegacyUnpickler(f).load()
-
+    print()
     # Legacy TensorFlow pickle => convert.
     if isinstance(data, tuple) and len(data) == 3 and all(isinstance(net, _TFNetworkStub) for net in data):
+        print('This is legacy TensorFlow pickle')
         tf_G, tf_D, tf_Gs = data
         G = convert_tf_generator(tf_G)
         D = convert_tf_discriminator(tf_D)
@@ -163,9 +165,9 @@ def convert_tf_generator(tf_G):
             tf_params[f'{r}x{r}/ToRGB/{match.group(2)}'] = value
             kwargs.synthesis.kwargs.architecture = 'orig'
     #for name, value in tf_params.items(): print(f'{name:<50s}{list(value.shape)}')
-
+    print('Kwargs created')
     # Convert params.
-    from training import networks
+
     G = networks.Generator(**kwargs).eval().requires_grad_(False)
     # pylint: disable=unnecessary-lambda
     _populate_module_params(G,
@@ -200,6 +202,7 @@ def convert_tf_generator(tf_G):
         r'synthesis\.b(\d+)\.skip\.weight',                 lambda r:   tf_params[f'synthesis/{r}x{r}/Skip/weight'][::-1, ::-1].transpose(3, 2, 0, 1),
         r'.*\.resample_filter',                             None,
     )
+    print('Generator converted')
     return G
 
 #----------------------------------------------------------------------------
@@ -262,7 +265,7 @@ def convert_tf_discriminator(tf_D):
     #for name, value in tf_params.items(): print(f'{name:<50s}{list(value.shape)}')
 
     # Convert params.
-    from training import networks
+
     D = networks.Discriminator(**kwargs).eval().requires_grad_(False)
     # pylint: disable=unnecessary-lambda
     _populate_module_params(D,
