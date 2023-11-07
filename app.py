@@ -41,9 +41,10 @@ def reset_rerun():
 with col1:
     st.markdown("")
     but_col1, but_col2, but_col3 = st.columns([2.1, 2.5, 8])
-    run_button = but_col1.button("▶️ Run")
-    reset_button = but_col2.button("🔁 Reset")
-    clear_button = but_col3.button('✖️ Clear')
+    run_button = but_col1.button("▶️ Run", help='Run the DragGAN model (Please draw points if haven\'t done)')
+    reset_button = but_col2.button("🔁 Reset",
+                                   help='By clicking reset, the entire session along with sidebar settings will be cleared')
+    clear_button = but_col3.button('✖️ Clear', help='Clears the points drawn on the image')
 
 
 ### Settings panel in the left side bar ###
@@ -150,7 +151,7 @@ with col1:
 
 #  Optimization loop
 if run_button:
-    if len(handles) > 0 and len(targets) > 0 and len(handles) == len(targets) and all(targets):
+    if  len(handles) > 0 and 0 < len(targets) == len(handles) and all(targets):
         W = draggan.optimize(
             W,
             G,
