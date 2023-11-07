@@ -39,9 +39,10 @@ def reset_rerun():
 ### Run/Reset buttons in right col ###
 with col1:
     st.markdown("")
-    but_col1, but_col2 = st.columns([1,7])
+    but_col1, but_col2, but_col3 = st.columns([1,1,1])
     run_button = but_col1.button("▶️ Run")
     reset_button = but_col2.button("🔁 Reset")
+    clear_button = but_col3.button('✖️ Clear')
 
 
 ### Settings panel in the left side bar ###
