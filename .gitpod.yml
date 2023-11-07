@@ -10,7 +10,7 @@ image:
 tasks:
   - before: pyenv local 3.10
     init: pip install -r requirements.txt
-    command: echo "\nSetup Done Successfully\n";
+    command: echo -e "\nSetup Done Successfully\n";
              streamlit run app.py
 
 
