@@ -35,9 +35,10 @@ def reset():
 
 def clear_points():
     if "points" in st.session_state and "points_types" in st.session_state:
-        del st.session_state["points"]
-        del st.session_state['points_types']
-        del st.session_state["next_click"]
+        st.session_state.pop('points')
+        st.session_state.pop('points_types')
+        st.session_state.pop("next_click")
+        st.experimental_rerun()
 
 def reset_rerun():
     reset()
@@ -53,8 +54,8 @@ with col1:
                                    help='By clicking reset, the entire session along with sidebar settings will be '
                                         'cleared')
     clear_button = but_col3.button('✖️ Clear',
-                                   help='Clears the points drawn on the image',
-                                   on_click=clear_points)
+                                   help='Clears the points drawn on the image')
+
 
 
 ### Settings panel in the left side bar ###
@@ -101,12 +102,14 @@ with st.sidebar:
     if reset_button:
         reset_rerun()
 
+if clear_button:
+    clear_points()
+
 if "points" not in st.session_state:
     st.session_state["points"] = []
     st.session_state["points_types"] = []
     # State variable to track whether the next click should be a 'handle' or 'target'
     st.session_state["next_click"] = "handle"
-
 
 s = time.perf_counter()
 G = draggan.load_model(model_url, device=device)
@@ -139,7 +142,6 @@ if "points" in st.session_state and "points_types" in st.session_state:
         else:
             targets.append(point)
     if len(handles) > 0:
-        print(handles, targets)
         utils.draw_handle_target_points(img, handles, targets)
 
 # -- Right column image container ---
