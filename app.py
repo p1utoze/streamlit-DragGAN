@@ -44,8 +44,8 @@ with col2:
     reset_button = but_col2.button("🔁 Reset")
 
 
-### Settings panel in left col ###
-with col1:
+### Settings panel in the left side bar ###
+with st.sidebar:
     st.header("🐉 DragGAN")
 
     settings_col1, settings_col2 = st.columns([1, 1])
@@ -85,7 +85,6 @@ with col1:
         "Truncation Cutoff", value=8, step=1, min_value=-1, max_value=18, on_change=reset, help="Number of layers to apply truncation to (-1 = all layers)"
     )    
     
-
     if reset_button:
         reset_rerun()
 
