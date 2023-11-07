@@ -26,7 +26,7 @@ st.set_page_config(
 
 message_container = st.empty()
 
-col1, col2 = st.columns([1, 2], gap="large")
+col1, col2 = st.columns([1, 1], gap="medium")
 
 def reset():
     st.session_state.clear()
