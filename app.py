@@ -8,14 +8,14 @@ import draggan
 import utils
 
 
-## Default to CPU if no GPU is available
+# <-- Default to CPU if no GPU is available -->
 if torch.cuda.is_available():
   device = torch.device("cuda")
 else:
     device = torch.device("cpu")
 
 
-### Streamlit setup ###
+# <-- Streamlit setup -->
 
 st.set_page_config(
     page_title="DragGAN Demo",
@@ -45,7 +45,7 @@ def reset_rerun():
     st.experimental_rerun()
 
 
-### Run/Reset buttons in right col ###
+# <-- Run/Reset buttons in right col -->
 with col1:
     st.markdown("")
     but_col1, but_col2, but_col3 = st.columns([2.1, 2.5, 8])
@@ -102,6 +102,7 @@ with st.sidebar:
     if reset_button:
         reset_rerun()
 
+# <-- Reset Marked points on the image -->
 if clear_button:
     clear_points()
 
@@ -144,7 +145,7 @@ if "points" in st.session_state and "points_types" in st.session_state:
     if len(handles) > 0:
         utils.draw_handle_target_points(img, handles, targets)
 
-# -- Right column image container ---
+# <-- Left column image container --->
 with col1:
     empty = st.empty()
     with empty.container():
@@ -159,12 +160,12 @@ with col1:
                 st.session_state["next_click"] = (
                     "target" if st.session_state["next_click"] == "handle" else "handle"
                 )
-                
+
                 st.experimental_rerun()
 
-#  Optimization loop
+# <-- Optimization loop -->
 if run_button:
-    if  len(handles) > 0 and 0 < len(targets) == len(handles) and all(targets):
+    if (len(handles) and len(targets)) and len(targets) == len(handles) and all(targets):
         W = draggan.optimize(
             W,
             G,
