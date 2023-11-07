@@ -37,7 +37,7 @@ def reset_rerun():
 
 
 ### Run/Reset buttons in right col ###
-with col2:
+with col1:
     st.markdown("")
     but_col1, but_col2 = st.columns([1,7])
     run_button = but_col1.button("▶️ Run")
@@ -130,7 +130,7 @@ if "points" in st.session_state and "points_types" in st.session_state:
 
 
 ### Right column image container ###
-with col2:
+with col1:
     empty = st.empty()
     with empty.container():
         value = streamlit_image_coordinates(img, key="pil")
