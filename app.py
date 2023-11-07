@@ -32,6 +32,13 @@ col1, col2 = st.columns([1, 1], gap="medium")
 def reset():
     st.session_state.clear()
 
+
+def clear_points():
+    if "points" in st.session_state and "points_types" in st.session_state:
+        del st.session_state["points"]
+        del st.session_state['points_types']
+        del st.session_state["next_click"]
+
 def reset_rerun():
     reset()
     st.experimental_rerun()
@@ -43,8 +50,11 @@ with col1:
     but_col1, but_col2, but_col3 = st.columns([2.1, 2.5, 8])
     run_button = but_col1.button("▶️ Run", help='Run the DragGAN model (Please draw points if haven\'t done)')
     reset_button = but_col2.button("🔁 Reset",
-                                   help='By clicking reset, the entire session along with sidebar settings will be cleared')
-    clear_button = but_col3.button('✖️ Clear', help='Clears the points drawn on the image')
+                                   help='By clicking reset, the entire session along with sidebar settings will be '
+                                        'cleared')
+    clear_button = but_col3.button('✖️ Clear',
+                                   help='Clears the points drawn on the image',
+                                   on_click=clear_points)
 
 
 ### Settings panel in the left side bar ###
@@ -129,6 +139,7 @@ if "points" in st.session_state and "points_types" in st.session_state:
         else:
             targets.append(point)
     if len(handles) > 0:
+        print(handles, targets)
         utils.draw_handle_target_points(img, handles, targets)
 
 # -- Right column image container ---
