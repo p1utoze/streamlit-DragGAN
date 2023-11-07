@@ -28,6 +28,7 @@ message_container = st.empty()
 
 col1, col2 = st.columns([1, 1], gap="medium")
 
+
 def reset():
     st.session_state.clear()
 
@@ -39,7 +40,7 @@ def reset_rerun():
 ### Run/Reset buttons in right col ###
 with col1:
     st.markdown("")
-    but_col1, but_col2, but_col3 = st.columns([1,1,1])
+    but_col1, but_col2, but_col3 = st.columns([2.1, 2.5, 8])
     run_button = but_col1.button("▶️ Run")
     reset_button = but_col2.button("🔁 Reset")
     clear_button = but_col3.button('✖️ Clear')
@@ -129,8 +130,7 @@ if "points" in st.session_state and "points_types" in st.session_state:
     if len(handles) > 0:
         utils.draw_handle_target_points(img, handles, targets)
 
-
-### Right column image container ###
+# -- Right column image container ---
 with col1:
     empty = st.empty()
     with empty.container():
@@ -148,7 +148,7 @@ with col1:
                 
                 st.experimental_rerun()
 
-## Optimization loop
+#  Optimization loop
 if run_button:
     if len(handles) > 0 and len(targets) > 0 and len(handles) == len(targets) and all(targets):
         W = draggan.optimize(
